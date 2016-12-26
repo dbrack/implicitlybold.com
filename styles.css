@@ -1,0 +1,33 @@
+body {
+	background: #000;
+	height: 100%;
+  margin: 0;
+  font: 16px Helvetica, sans-serif;
+  color: #efefef;
+}
+
+section {
+  display: flex;
+  align-items: center;
+  height: 100%;
+}
+
+h1 {
+  text-align: center;
+  width: 100%;
+  font-size: 6em;
+}
+
+.timeWrapper {
+  width: 100%;
+  text-align: center;
+  font-size: 2em;
+}
+
+.hours {
+  color: #e70a2d;
+}
+
+.minutes {
+  color: #00e1d5;
+}
