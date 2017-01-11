@@ -31,9 +31,4 @@ const createSpan = (cls, inner, node) => {
 	node.appendChild(span);
 };
 
-const formatTime = (t) => {
-	if (t < 10) {
-		t = `0${t}`;
-	};
-	return t;
-};
+const formatTime = t => t < 10 ? `0${t}` : t;
