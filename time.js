@@ -1,4 +1,8 @@
 const startClock = () => {
+  setInterval(renderClock, 1000);
+};
+
+const renderClock = () => {
 	const today = new Date();
 	const h = today.getHours();
 	const m = formatTime(today.getMinutes());
@@ -20,8 +24,6 @@ const startClock = () => {
 
 	timeSection.appendChild(wrapper);
 	document.body.appendChild(timeSection);
-
-	const t = setTimeout(startClock, 1000);
 };
 
 const createSpan = (cls, inner, node) => {
