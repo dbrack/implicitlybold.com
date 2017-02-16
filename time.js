@@ -15,9 +15,9 @@ const renderClock = () => {
 	const wrapper = document.createElement('div');
 	wrapper.setAttribute('class', 'timeWrapper');
 
-	createSpan('hours', h, wrapper);
-	createSpan('seperator', ':', wrapper);
-	createSpan('minutes', m, wrapper);
+	wrapper.appendChild(createSpan('hours', h));
+	wrapper.appendChild(createSpan('seperator', ':'));
+	wrapper.appendChild(createSpan('minutes', m));
 
 	const timeSection = document.createElement('section');
 	timeSection.setAttribute('id', 'time');
@@ -26,11 +26,11 @@ const renderClock = () => {
 	document.body.appendChild(timeSection);
 };
 
-const createSpan = (cls, inner, node) => {
+const createSpan = (cls, inner) => {
 	const span = document.createElement('span');
 	span.setAttribute('class', cls);
 	span.innerHTML = inner;
-	node.appendChild(span);
+	return span;
 };
 
 const formatTime = t => t < 10 ? `0${t}` : t;
