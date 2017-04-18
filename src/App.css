@@ -1,0 +1,11 @@
+section {
+	display: flex;
+	align-items: center;
+	height: 100%;
+}
+
+h1 {
+	text-align: center;
+	width: 100%;
+	font-size: 6em;
+}
