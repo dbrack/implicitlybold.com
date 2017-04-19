@@ -1,7 +1,7 @@
 {
   "name": "dbr.me",
   "version": "0.1.0",
-	"description": "Dbr.me Website",
+	"description": "Implictly Bold Website",
   "private": true,
   "dependencies": {
     "@types/jest": "^19.2.2",
