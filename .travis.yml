@@ -1,0 +1,30 @@
+language: node_js
+env:
+  global:
+  - secure: SDo7pUlP2JxizBqib1+Lw3PKf7j176d+hSsX0B6R12fTxQgj51Jz63PDgxRHXzz3ASvbtYsL/I2OTjtn8MWQEKiyCs/jEXu3a9XBeXnwM2Gt2sd46/m/jQPXkAwrYo8/cIKEKaGN/T0Q5JxPHMqqUBCtSY0YK+/Evq40qNnlMvX+Oyne8G0Dt81IRsfxdR/PAQdhVOy34HahxoT+QU0UwGFMF9SGKSmz7CsZ//EuUC87Pnmfayf5Np7n70ojEzcXlnWp2+qjhbD1DKte9xoCu+ER7nzVGD/67+0jUL3cZj2ZOeJNHEL51aWXzuKSjteWTRPs9wc3URd4O/fW2pPIo7Ec/ZU8Y1FJhL+2xO5TgcOua7tkdi3spFemeDdiODxymNAxQHWIFHGQuY1v5P6sNBenqPhpe3HHFCNJYkrmsA6uBjLbGrzD5dVPBDagRCP1838e3wrH+td0gQvoD7aqR7X5SrJsC1/xLtMdyMYhC/V1csMrbtAYjiXBHQY0LxoXCwbsjtfpALOYJ/vKCabN2K0Df02TMbX8w0iZWtoOamuM38AGKFsbWMCF5nKpgaaXnq2C75NY6XDpd+tGxAfY29qE71SnOkPaZj1GcyFa5mF919pjSOd3o7FscWwetZedKXGMFmC73sq0CfL4o02ud6Rl6VsBcPPErnJ/sapyjTk=
+  - secure: IWmw26+Jwz8EBEemsh9RvvdHei6stEZtHMb7yFm2Jsf9D3kR1AuKwai8ni6SSQ1x6O+y5Pv3RHgpR3Z+rNSTci5eual77VztcDo15bwW7rXi7Yq67PpvKAAgDA/DeK39WaNIhPJsNAv0YCAXo1mkME9weoDo04K1vBW5neAiLlfVBT7OcrkNZ83cgYAwmqPV1ZPjFDf97JZVjT3QfT5Wu+pki0KILRZQo4/GP4+9xhaSIRzxO8MulCgSEzVA/+3hqzx08QAaBE/XFVD3rKR27rEOt+XzhoQK9vD/Yehj4CV+0xUbSW8g5Y/R5d8s3aBhN2dAbPoVVqyAV/16mJ5dsSjeqNU7cWfyJgXAKMEbN8VS/bGynzd+xUQw78WSM8eiaCtSt1TL07I4YFJQm+7yK17AuUOh8IpCrUx//G9Sn6LlLnU1o6eEA1Jg/DvoRVXbE4yqzGAK58S52+tr2nkGV+rw4OcSGaJWUSuun+9kNu66C1S+4puxJk8Id3GWBpw59UpQB+5pUFPtogcIfAlLHbx0IaD5Xb4WjAIl29uX42zLdGeyfcIbGvxfzvfruS9opKQY8YCWZd+5DbBEjuachw4l41id5Y4pvftQ5QxLrw0TOzu0WfGjprqDSNf9q6bpdX+/qai+EVBPH9mkyINshM2ZwuZTrgZ54JKJ0RTPzpM=
+addons:
+  ssh_known_hosts:
+  - dbr.me
+cache:
+  directories:
+  - node_modules
+  yarn: true
+notifications:
+  email: false
+branches:
+  except:
+  - "/^v\\d+\\.\\d+\\.\\d+$/"
+before_deploy:
+- openssl aes-256-cbc -K $encrypted_70266334fac6_key -iv $encrypted_70266334fac6_iv
+  -in deploy_rsa.enc -out /tmp/deploy_rsa -d
+- eval "$(ssh-agent -s)"
+- chmod 600 /tmp/deploy_rsa
+- ssh-add /tmp/deploy_rsa
+- yarn build
+deploy:
+  provider: script
+  skip_cleanup: true
+  script: rsync -r -q $TRAVIS_BUILD_DIR/build/ $DEPLOY_USER@dbr.me:$DEPLOY_PATH
+  on:
+    branch: master
