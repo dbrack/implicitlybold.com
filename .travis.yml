@@ -17,8 +17,12 @@ node_js:
 branches:
   except:
   - "/^v\\d+\\.\\d+\\.\\d+$/"
+
+before_install:
+- openssl aes-256-cbc -K $encrypted_98f0b29f23b3_key -iv $encrypted_98f0b29f23b3_iv
+  -in deploy_rsa.enc -out deploy_rsa -d
 before_deploy:
-- openssl aes-256-cbc -K $encrypted_70266334fac6_key -iv $encrypted_70266334fac6_iv
+- openssl aes-256-cbc -K $encrypted_98f0b29f23b3_key -iv $encrypted_98f0b29f23b3_iv
   -in deploy_rsa.enc -out /tmp/deploy_rsa -d
 - eval "$(ssh-agent -s)"
 - chmod 600 /tmp/deploy_rsa
