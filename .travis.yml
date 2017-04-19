@@ -12,6 +12,8 @@ cache:
   yarn: true
 notifications:
   email: false
+node_js:
+- '6'
 branches:
   except:
   - "/^v\\d+\\.\\d+\\.\\d+$/"
