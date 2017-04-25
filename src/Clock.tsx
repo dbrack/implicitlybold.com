@@ -1,6 +1,12 @@
 import * as React from 'react';
+import styled from 'styled-components';
+import Section from './Section';
 
-import './Clock.css';
+const Time = styled.span`
+	width: 100%;
+	text-align: center;
+	font-size: 2em;
+`;
 
 interface State {
 	time: number;
@@ -34,9 +40,9 @@ class Clock extends React.Component<{}, State> {
 	render() {
 		const time = new Date(this.state.time).toLocaleTimeString('en-US');
 		return (
-			<section>
-					<span className={'time'}>{time}</span>
-			</section>
+			<Section>
+					<Time>{time}</Time>
+			</Section>
 		);
 	}
 }
