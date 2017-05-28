@@ -10,9 +10,3 @@ node_js:
 branches:
   except:
   - "/^v\\d+\\.\\d+\\.\\d+$/"
-deploy:
-  provider: script
-  skip_cleanup: true
-  script: yarn run deploy
-  on:
-    branch: master
