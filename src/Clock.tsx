@@ -16,7 +16,7 @@ class Clock extends React.Component<{}, State> {
 	private timer: number;
 
 	constructor() {
-		super();
+		super({});
 		this.state = {
 			time: Date.now()
 		};
