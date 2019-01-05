@@ -4,4 +4,4 @@
   X-Frame-Options: SAMEORIGIN
   Referrer-Policy: no-referrer-when-downgrade
   X-XSS-Protection: 1; mode=block
-  Feature-Policy: geolocation 'self'; notifications 'self'; push 'self'; microphone 'self'; camera 'self'
+  Feature-Policy: geolocation 'self'; microphone 'self'; camera 'self'
